@@ -62,5 +62,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: BeeWare-APK
-        path: dist/<your-app-name>-<your-version>.apk
+        path: dist/Incident1-1.1.apk
 
