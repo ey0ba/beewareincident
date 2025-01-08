@@ -1,0 +1,38 @@
+python -m venv venv
+curl -I "https://incident.com.et"
+
+192.250.239.56
+
+91.204.209.23
+
+curl -X POST "https://incident.com.et/api/token/" -H "Content-Type: application/json" -d "{\"username\": \"guest\", \"password\": \"@yek12hmc\"}"
+
+
+
+curl -X POST "https://incident.com.et/api/token/" -H "Content-Type: application/json" -d "{\"username\": \"reporter1\", \"password\": \"applicationtest1234@\"}"
+
+curl -X POST "http://127.0.0.1:8000/api/token/" -H "Content-Type: application/json" -d "{\"username\": \"guest\", \"password\": \"@yek12hmc\"}"
+
+stop submittin multiple TimeRanges.
+
+curl -X POST http://127.0.0.1:8000/api/kivyapp/kivy-login/ ^
+More? -H "Content-Type: application/json" ^
+More? -d "{\"username\": \"guest\", \"password\": \"@yek12hmc\"}"
+
+curl -X POST http://127.0.0.1:8000/api/kivyapp/dropdown-data/ ^
+-H "Content-Type: application/json" ^
+-d "{\"username\": \"guest\", \"password\": \"@yek12hmc\"}"
+
+
+curl -X POST http://127.0.0.1:8000/api/kivyapp/submit-incident/ ^
+-H "Content-Type: application/json" ^
+-d "{\"username\": \"guest\", \"password\": \"@yek12hmc\", \"incident_time\": \"2024-12-27T10:33:04\", \"age\": 25, \"sex\": \"Male\", \"incident_locations\": 1, \"suspected_cause\": 1, \"suspected_cause_other\": \"Slip on wet floor\", \"contributing_factor\": 4, \"contributing_factor_other\": \"Staff not alerted\", \"mitigating_factor\": 3, \"mitigating_factor_other\": \"Quick response\", \"incident_type\": 1, \"incident_outcome\": 8, \"resulting_action\": 3, \"reporter_name\": \"Dr. John Doe\", \"reporter_role\": 1, \"reporter_department\": 1, \"other_opinions\": \"Ensure wet floors are properly marked.\"}"
+
+
+curl -X POST https://incident.com.et/api/kivyapp/kivy-login/ ^
+More? -H "Content-Type: application/json" ^
+More? -d "{\"username\": \"guest\", \"password\": \"@yek12hmc\"}"
+
+curl -X POST https://incident.com.et/api/kivyapp/dropdown-data/ ^
+-H "Content-Type: application/json" ^
+-d "{\"username\": \"guest\", \"password\": \"@yek12hmc\"}"
