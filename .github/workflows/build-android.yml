@@ -1,4 +1,4 @@
-name: Build BeeWare APK
+name: Build BeeWare APK or AAB
 
 on:
   push:
@@ -53,14 +53,18 @@ jobs:
         yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
         $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-31" "build-tools;31.0.0"
 
-    - name: Build APK
+    - name: Build APK or AAB
       run: |
         briefcase build android
-        briefcase package android
+        # Use --format apk to generate APK. Remove this line to generate AAB by default.
+        briefcase package android --format apk
 
-    - name: Upload APK
+    - name: Upload APK or AAB
       uses: actions/upload-artifact@v3
       with:
-        name: BeeWare-APK
-        path: dist/Incident1-1.1.apk
+        # Change name and path to match your output
+        name: BeeWare-Artifact
+        path: |
+          dist/incidentapp-0.0.1.apk
+          dist/incidentapp-0.0.1.aab
 
