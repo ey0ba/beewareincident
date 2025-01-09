@@ -28,6 +28,10 @@ test_requires = [
     "pytest",
 ]
 
+android.manifest_additions = """
+<uses-permission android:name="android.permission.INTERNET" />
+"""
+
 [tool.briefcase.app.incidentapp.macOS]
 universal_build = true
 requires = [
