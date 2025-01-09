@@ -35,6 +35,6 @@ def handle_report(app):
         app.main_window.content = build_form_page(app)  # Navigate to the Form Page
     else:
         print(f"Failed to fetch dropdown data: {response}")
-        toga.Dialog.info("Error", f"Failed to fetch dropdown data: {response}")
+        toga.dialogs.info("Error", f"Failed to fetch dropdown data: {response}")
         
         

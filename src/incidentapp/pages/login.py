@@ -32,6 +32,7 @@ def build_login_page(app):
     return box
 
 
+        
 def handle_login(app, username, password):
     """
     Handles the login process by calling the API and navigating to the next page on success.
@@ -44,4 +45,4 @@ def handle_login(app, username, password):
         app.main_window.content = build_report_page(app)  # Navigate to Report Page
     else:
         print(f"Login failed: {response}")
-        toga.Dialog.info("Login Failed", response)  # Display error dialog
+        toga.dialogs.info("Login Failed", response)  # Correct usage of dialogs.info
