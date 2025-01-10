@@ -5,6 +5,7 @@ from toga.style.pack import COLUMN
 from incidentapp.network import handle_submit
 
 
+
 def build_form_page(app):
     """
     Builds the form page using dropdown data fetched from the API.
@@ -44,14 +45,18 @@ def build_form_page(app):
     department_dropdown = toga.Selection(items=[item["name"] for item in departments], style=Pack(padding=10))
     reporter_department_dropdown = toga.Selection(items=[item["name"] for item in reporter_departments], style=Pack(padding=10))
     suspected_cause_dropdown = toga.Selection(items=[item["name"] for item in suspected_causes], style=Pack(padding=10))
+    suspected_cause_other_input = toga.TextInput(placeholder="Other Suspected Causes", style=Pack(padding=10))
     contributing_factor_dropdown = toga.Selection(items=[item["name"] for item in contributing_factors], style=Pack(padding=10))
+    contributing_factor_other_input = toga.TextInput(placeholder="Other Contributing Factors", style=Pack(padding=10))
     mitigating_factor_dropdown = toga.Selection(items=[item["name"] for item in mitigating_factors], style=Pack(padding=10))
+    mitigating_factor_other_input = toga.TextInput(placeholder="Other Mitigating Factors", style=Pack(padding=10))
     incident_type_dropdown = toga.Selection(items=[item["name"] for item in incident_types], style=Pack(padding=10))
     incident_outcome_dropdown = toga.Selection(items=[item["name"] for item in incident_outcomes], style=Pack(padding=10))
     resulting_action_dropdown = toga.Selection(items=[item["name"] for item in resulting_actions], style=Pack(padding=10))
     reporter_role_dropdown = toga.Selection(items=[item["name"] for item in reporter_roles], style=Pack(padding=10))
     reporter_name_input = toga.TextInput(placeholder="Reporter Name", style=Pack(padding=10))
     other_opinions_input = toga.TextInput(placeholder="Other Opinions", style=Pack(padding=10))
+    
 
     def reset_form():
         """
@@ -63,14 +68,18 @@ def build_form_page(app):
         department_dropdown.value = "Select Department"
         reporter_department_dropdown.value = "Select Reporter Department"
         suspected_cause_dropdown.value = "Select Suspected Cause"
+        suspected_cause_other_input.value = ""
         contributing_factor_dropdown.value = "Select Contributing Factor"
+        contributing_factor_other_input.value = ""
         mitigating_factor_dropdown.value = "Select Mitigating Factor"
+        mitigating_factor_other_input.value = ""
         incident_type_dropdown.value = "Select Incident Type"
         incident_outcome_dropdown.value = "Select Incident Outcome"
         resulting_action_dropdown.value = "Select Resulting Action"
         reporter_role_dropdown.value = "Select Reporter Role"
         reporter_name_input.value = ""
         other_opinions_input.value = ""
+        
 
     # Submit button
     submit_button = toga.Button(
@@ -84,8 +93,11 @@ def build_form_page(app):
                 "incident_locations": get_selected_pk(department_dropdown, departments),
                 "reporter_department": get_selected_pk(reporter_department_dropdown, reporter_departments),
                 "suspected_cause": get_selected_pk(suspected_cause_dropdown, suspected_causes),
+                "suspected_cause_other": suspected_cause_other_input.value,
                 "contributing_factor": get_selected_pk(contributing_factor_dropdown, contributing_factors),
+                "contributing_factor_other": contributing_factor_other_input.value,
                 "mitigating_factor": get_selected_pk(mitigating_factor_dropdown, mitigating_factors),
+                "mitigating_factor_other": mitigating_factor_other_input.value,
                 "incident_type": get_selected_pk(incident_type_dropdown, incident_types),
                 "incident_outcome": get_selected_pk(incident_outcome_dropdown, incident_outcomes),
                 "resulting_action": get_selected_pk(resulting_action_dropdown, resulting_actions),
@@ -102,25 +114,31 @@ def build_form_page(app):
     back_button = toga.Button("Back to Report Page", on_press=app.go_to_report_screen, style=Pack(padding=10))
 
     # Layout
-    box = toga.Box(style=Pack(direction=COLUMN, padding=10))
-    box.add(incident_time_input)
-    box.add(age_input)
-    box.add(sex_dropdown)
-    box.add(department_dropdown)
-    box.add(reporter_department_dropdown)
-    box.add(suspected_cause_dropdown)
-    box.add(contributing_factor_dropdown)
-    box.add(mitigating_factor_dropdown)
-    box.add(incident_type_dropdown)
-    box.add(incident_outcome_dropdown)
-    box.add(resulting_action_dropdown)
-    box.add(reporter_role_dropdown)
-    box.add(reporter_name_input)
-    box.add(other_opinions_input)
-    box.add(submit_button)
-    box.add(back_button)
+    form_box = toga.Box(style=Pack(direction=COLUMN, padding=10))  # Define `form_box`
+    form_box.add(incident_time_input)
+    form_box.add(age_input)
+    form_box.add(sex_dropdown)
+    form_box.add(department_dropdown)
+    form_box.add(reporter_department_dropdown)
+    form_box.add(suspected_cause_dropdown)
+    form_box.add(suspected_cause_other_input)
+    form_box.add(contributing_factor_dropdown)
+    form_box.add(contributing_factor_other_input)
+    form_box.add(mitigating_factor_dropdown)
+    form_box.add(mitigating_factor_other_input)
+    form_box.add(incident_type_dropdown)
+    form_box.add(incident_outcome_dropdown)
+    form_box.add(resulting_action_dropdown)
+    form_box.add(reporter_role_dropdown)
+    form_box.add(reporter_name_input)
+    form_box.add(other_opinions_input)
+    form_box.add(submit_button)
+    form_box.add(back_button)
 
-    return box
+    # Wrap in ScrollContainer
+    scroll_container = toga.ScrollContainer(content=form_box)
+
+    return scroll_container
 
 
 def get_selected_pk(selection_widget, data_list):

@@ -11,13 +11,19 @@ def build_report_page(app):
     report_button = toga.Button("Report", on_press=lambda widget: handle_report(app), style=Pack(padding=10))
     logout_button = toga.Button("Logout", on_press=app.go_to_home_screen, style=Pack(padding=10))
 
-    # Report screen layout
-    box = toga.Box(style=Pack(direction=COLUMN, padding=10))
-    box.add(label)
-    box.add(report_button)
-    box.add(logout_button)
+    # Add buttons to a Box
+    button_box = toga.Box(style=Pack(direction=COLUMN, padding=10))
+    button_box.add(report_button)
+    button_box.add(logout_button)
 
-    return box
+    # Wrap the content in a ScrollContainer
+    scrollable_content = toga.Box(style=Pack(direction=COLUMN, padding=10))
+    scrollable_content.add(label)
+    scrollable_content.add(button_box)
+
+    scroll_container = toga.ScrollContainer(content=scrollable_content)
+
+    return scroll_container
 
 
 def handle_report(app):
@@ -36,5 +42,3 @@ def handle_report(app):
     else:
         print(f"Failed to fetch dropdown data: {response}")
         toga.dialogs.info("Error", f"Failed to fetch dropdown data: {response}")
-        
-        

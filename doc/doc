@@ -36,3 +36,15 @@ More? -d "{\"username\": \"guest\", \"password\": \"@yek12hmc\"}"
 curl -X POST https://incident.com.et/api/kivyapp/dropdown-data/ ^
 -H "Content-Type: application/json" ^
 -d "{\"username\": \"guest\", \"password\": \"@yek12hmc\"}"
+
+
+
+#noraml
+briefcase clean
+briefcase build
+briefcase run
+
+#to force
+Remove-Item -Recurse -Force build
+briefcase build
+briefcase run
