@@ -3,7 +3,9 @@
 
 #BASE_URL = "http://127.0.0.1:8000/api/kivyapp/"
 
-BASE_URL = "https://incident.com.et/api/kivyapp/"
+#BASE_URL = "https://incident.com.et/api/kivyapp/"
+
+BASE_URL = "https://incident.com.et.mems.health.et/api/kivyapp/"
 
 API_URLS = {
     "kivy-login": f"{BASE_URL}kivy-login/",  # Updated for username-password login

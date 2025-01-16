@@ -80,11 +80,15 @@ def build_form_page(app):
         reporter_name_input.value = ""
         other_opinions_input.value = ""
         
+        
+  
+            
+        
 
     # Submit button
     submit_button = toga.Button(
         "Submit",
-        on_press=lambda widget: handle_submit(
+        on_press=lambda widget: handle_submit_with_validation(
             app,
             {
                 "incident_time": incident_time_input.value,
@@ -150,3 +154,34 @@ def get_selected_pk(selection_widget, data_list):
         if item["name"] == selected_name:
             return item["id"]
     return None  # Return None if no match is found
+
+
+
+
+def validate_all_inputs(inputs, required_fields):
+    """
+    Validates multiple input fields dynamically.
+    :param inputs: Dictionary of field names and values.
+    :param required_fields: List of fields that must be non-empty.
+    :raises ValueError: If any required field is empty.
+    """
+    for field in required_fields:
+        if not inputs.get(field) or not str(inputs[field]).strip():
+            raise ValueError(f"{field.replace('_', ' ').capitalize()} cannot be empty!")
+
+
+
+
+def handle_submit_with_validation(app, form_data, reset_form_callback):
+    try:
+        # Define required fields
+        required_fields = ["age", "sex", "reporter_department", "suspected_cause", "contributing_factor", "mitigating_factor", "incident_type", "incident_outcome", "resulting_action", "reporter_role"]
+
+        # Validate all fields
+        validate_all_inputs(form_data, required_fields)
+
+        # Submit form if validation passes
+        handle_submit(app, form_data, reset_form_callback)
+    except ValueError as e:
+        # Display validation error
+        app.main_window.info_dialog("Validation Error", str(e))
