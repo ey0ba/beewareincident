@@ -59,7 +59,7 @@ jobs:
 
     - name: Build and Package APK
       run: |
-        briefcase build android -f
+        briefcase build android 
         briefcase package android
 
     - name: Upload APK
