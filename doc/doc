@@ -1,6 +1,8 @@
 python -m venv venv
 curl -I "https://incident.com.et"
 
+curl -I "https://incident.com.et.mems.health.et"
+
 192.250.239.56
 
 91.204.209.23
@@ -48,3 +50,17 @@ briefcase run
 Remove-Item -Recurse -Force build
 briefcase build
 briefcase run
+
+
+
+#  git remote -v
+
+#  git push -u origin main
+
+
+git config --global user.name "Eyob Assefa Betiru"
+git config --global user.email "eyoba.bet@gmail.com"
+
+
+git reset --hard 0fd0961
+

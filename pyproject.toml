@@ -9,7 +9,7 @@ author = "eyob"
 author_email = "eyoba.bet@gmail.com"
 
 [tool.briefcase.app.incidentapp]
-formal_name = "incidentapp"
+formal_name = "incident reporting tool"
 description = "first"
 long_description = """More details about the app should go here.
 """
@@ -19,6 +19,8 @@ sources = [
 test_sources = [
     "tests",
 ]
+icon = "src/incidentapp/resources/icon.png"  # ✅ Move the icon setting inside the app section
+
 
 requires = [
     "requests",
